@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+example:
+  name: zhouyao
+  email: 1215668319@qq.com

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyao.mapper.sys.EmailMapper">
+    <resultMap id="#" type="com.zyao.common.api.sys.Email">
+<!--                <result property="mqHost" column="mqHost"></result>-->
+<!--                <result property="mqPort" column="mqPort"></result>-->
+<!--                <result property="mqChannel" column="mqChannel"></result>-->
+<!--                <result property="mqQueue" column="mqQueue"></result>-->
+<!--                <result property="mqQm" column="mqQm"></result>-->
+<!--                <result property="mqCcsid" column="mqCcsid"></result>-->
+    </resultMap>
+
+</mapper>
