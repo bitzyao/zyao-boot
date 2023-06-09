@@ -19,7 +19,7 @@ public class EmailController {
         email.setEmail("1215668319@qq.com");
         email.setSubject("测试");
         email.setContent("测试");
-        email.setIsHtml(false);
+        email.setIsHtml(true);
         emailService.sendEmail(email);
     }
 }

@@ -67,4 +67,9 @@ public class Email {
      * isHtml
      */
     private Boolean isHtml;
+
+    /**
+     * 异常信息
+     */
+    private String exceptionInfo;
 }

@@ -1,18 +1,15 @@
 package com.zyao.service.ipml;
 
-import cn.hutool.Hutool;
 import cn.hutool.core.util.IdUtil;
 import com.zyao.common.api.sys.Email;
 import com.zyao.common.utils.EmailUtil;
 import com.zyao.mapper.sys.EmailMapper;
 import com.zyao.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+import java.io.File;
+import java.util.Date;
 
 /**
  * @author zyao
@@ -30,15 +27,16 @@ public class EmailServiceImpl implements EmailService {
     private EmailMapper emailMapper;
 
     @Override
-    public void sendEmail(Email email)  {
+    public void sendEmail(Email email) {
 
-        Boolean result = emailUtil.sendEmail(email);
-        if(result){
+        Boolean result = emailUtil.sendEmail(email,new File("C:/Users\\ayao\\Pictures\\Screenshots\\8ecc6cd4bc7e8a858197cbc104fba744.jpeg"),new File("C:/Users\\ayao\\Pictures\\Screenshots\\8ecc6cd4bc7e8a858197cbc104fba744.jpeg"),new File("C:/Users\\ayao\\Pictures\\Screenshots\\8ecc6cd4bc7e8a858197cbc104fba744.jpeg"));
+        if (result) {
             email.setStatus("发送成功");
-        }else{
+        } else {
             email.setStatus("发送失败");
         }
         email.setId(IdUtil.simpleUUID());
+        email.setCreateTime(new Date());
         emailMapper.insert(email);
     }
 }

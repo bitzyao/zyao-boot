@@ -45,6 +45,7 @@ public class EmailUtil {
             MailUtil.send(account, email.getEmail(), email.getSubject(), email.getContent(), email.getIsHtml(),files);
         } catch (Exception e){
             e.printStackTrace();
+            email.setExceptionInfo(e.getMessage());
             return false;
         }
         return true;
