@@ -35,8 +35,6 @@ public class EmailServiceImpl implements EmailService {
         } else {
             email.setStatus("发送失败");
         }
-        email.setId(IdUtil.simpleUUID());
-        email.setCreateTime(new Date());
         emailMapper.insert(email);
     }
 }

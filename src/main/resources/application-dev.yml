@@ -22,6 +22,8 @@ spring:
           config:
             delete-allow: false
             drop-table-allow: false
+  main:
+    allow-bean-definition-overriding: true
 
   redis:
     database: 10
@@ -50,3 +52,26 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 
+quartz:
+  scheduler:
+    instanceName: quartzScheduler
+    instanceId: AUTO
+  threadPool:
+    class: org.quartz.simpl.SimpleThreadPool
+    threadCount: 10
+    threadPriority: 5
+  jobStore:
+    class: org.quartz.impl.jdbcjobstore.JobStoreTX
+    driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+    useProperties: true
+    dataSource: myDS
+    tablePrefix: QRTZ_
+  dataSource:
+    myDS:
+      driver: com.mysql.cj.jdbc.Driver
+      URL: jdbc:mysql://8.130.120.83:3306/ZY_OBJ?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=Asia/Shanghai&useSSL=false
+      user: root
+      password: Zy123456
+      maxConnections: 10
+  # 定时任务具体实现路径
+  package:  com.zyao.job

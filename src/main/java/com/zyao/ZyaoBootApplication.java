@@ -9,9 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // @MapperScan是会自动扫描包下面的接口类，类似会给每个接口类自动加上@Mapper。
 @MapperScan("com/zyao/mapper")
 public class ZyaoBootApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ZyaoBootApplication.class, args);
     }
-
 }
