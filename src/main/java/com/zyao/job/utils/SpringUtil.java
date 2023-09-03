@@ -1,4 +1,4 @@
-package com.zyao.common.utils;
+package com.zyao.job.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
