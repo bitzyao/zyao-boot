@@ -1,10 +1,7 @@
 package com.zyao.config.init;
 
-import com.zyao.service.QuartzJobService;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * @author zyao

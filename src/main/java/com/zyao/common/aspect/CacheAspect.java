@@ -1,17 +1,15 @@
 package com.zyao.common.aspect;
 
 import com.zyao.common.aspect.annotation.MyCacheable;
-import com.zyao.common.utils.RedisUtil;
+import com.zyao.job.utils.RedisUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import java.util.Objects;
 
 /**
  * @author zyao
@@ -28,38 +26,47 @@ public class CacheAspect {
 
     @Around("@annotation(myCacheable)")
     public Object cache(ProceedingJoinPoint joinPoint, MyCacheable myCacheable) throws Throwable {
+        // 获取方法名
         String methodName = joinPoint.getSignature().getName();
-
+        //获取key值
         String key = myCacheable.key().isEmpty() ? methodName : myCacheable.key();
-
+        Object[] args = joinPoint.getArgs();
+        // 获取方法参数
+        if(myCacheable.isArgAsKey()){
+            for (Object obj: args) {
+                key = key +"_"+ obj.toString();
+            }
+        }
+        // 获取过期时间
         int expireSeconds = myCacheable.expireSeconds();
 
+        // 存储文件
         String folder = myCacheable.folder();
         if (!StringUtils.isEmpty(folder)) {
             key = folder + ":" + key;
         }
         boolean isHas= redisUtil.hasKey(key);
         Object result;
-        System.out.println("缓存切面1");
         if (isHas) {
+            System.out.println("从Redis返回");
             result = redisUtil.get(key);
         }else{
+            System.out.println("从数据库返回");
             result = joinPoint.proceed();
-
-            redisUtil.set(key, result.toString(), expireSeconds);
+            if(Objects.nonNull(result)){
+                redisUtil.set(key, result, expireSeconds);
+            }
         }
-        System.out.println("缓存切面2");
+
         return result;
     }
 
 
-    @Before("@annotation(myCacheable)")
-    public void beforeAdvice(MyCacheable myCacheable) {
-        System.out.println("缓存切面beforeAdvice...");
-    }
-
-    @After("@annotation(myCacheable)")
-    public void afterAdvice(MyCacheable myCacheable) {
-        System.out.println("缓存切面afterAdvice...");
-    }
+//    @Before("@annotation(myCacheable)")
+//    public void beforeAdvice(MyCacheable myCacheable) {
+//    }
+//
+//    @After("@annotation(myCacheable)")
+//    public void afterAdvice(MyCacheable myCacheable) {
+//    }
 }

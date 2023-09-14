@@ -26,11 +26,11 @@ spring:
     allow-bean-definition-overriding: true
 
   redis:
-    database: 10
-    host: 163.53.168.92
+    database: 0
+    host: 8.130.120.83
     port: 6379
     timeout: 10000
-    password: Hy12345678
+    password: Zy123456
     repositories:
       enabled: false
     jedis:
@@ -51,6 +51,7 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml # 用户标记或者指定mybatis对应xml的路径；
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 quartz:
   scheduler:
@@ -75,3 +76,12 @@ quartz:
       maxConnections: 10
   # 定时任务具体实现路径
   package:  com.zyao.job
+
+# 租户表维护
+tenant:
+  enable: true
+  column: tenant_id
+  ignoreTables:
+    - sys_user
+    - sys_account
+   ignoreSqls:

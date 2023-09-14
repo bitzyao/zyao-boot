@@ -17,4 +17,5 @@ public @interface MyCacheable {
     String key() default ""; // key值
     String folder() default ""; // Redis文件夹
     int expireSeconds() default 60; // 过期时间
+    boolean isArgAsKey() default false;
 }
