@@ -54,6 +54,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #    use-deprecated-executor: false
 
+
 quartz:
   scheduler:
     instanceName: quartzScheduler
@@ -81,8 +82,17 @@ quartz:
 # 租户表维护
 tenant:
   enable: true
-  column: tenant_id
+  column: tenant_code
   ignoreTables:  # 支持前缀匹配和全名匹配,不区分大小写
 #    - SYS_USER
 #    - sys_account
   ignoreSqls:   # 目前没有很好的设计方案 还未开发
+
+logging:
+  level:
+    root: info
+    com.hongyin.mapper: debug
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql.BasicBinder: info
+swagger:
+  enable: true

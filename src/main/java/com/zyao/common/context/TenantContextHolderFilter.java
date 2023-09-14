@@ -1,6 +1,5 @@
 package com.zyao.common.context;
 
-import io.netty.util.internal.StringUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -23,7 +22,7 @@ import java.util.Objects;
 public class TenantContextHolderFilter extends GenericFilterBean {
 
     @Override
-    @SneakyThrows // TODO 学习这个注解的作用
+    @SneakyThrows // lombok处理异常,字面意思,就是偷偷摸摸的给方法体加上异常处理
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;

@@ -1,20 +1,17 @@
 package com.zyao.controller.sys;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zyao.common.aspect.annotation.MyCacheable;
 import com.zyao.controller.BaseController;
 import com.zyao.modal.sys.SysUser;
 import com.zyao.service.sys.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,17 +28,33 @@ public class UserController extends BaseController {
         return sysUserService.getById(id);
     }
 
-    @RequestMapping("/query")
+    @PostMapping("/query")
     public ResponseEntity<?> queryUser(@RequestBody JSONObject filter){
-        List<SysUser> sysUsers = sysUserService.list();
-        Pageable pageable = PageRequest.of(0, 10);
-        PageImpl<SysUser> data = new PageImpl<>(sysUsers, pageable, sysUsers.size());
-        return getResponse(data);
+        Page<SysUser> sysUsers = sysUserService.pageQuery(filter);
+        return getResponse(sysUsers);
     }
 
-    @RequestMapping("/list")
+    @PostMapping ("/list")
     public List<SysUser> listUser(@RequestBody JSONObject filter){
-        List<SysUser> sysUsers = sysUserService.list();
-        return sysUsers;
+        return sysUserService.list();
     }
+
+
+    @PostMapping({"add"})
+    public SysUser addUser(@RequestBody SysUser sysUser){
+        sysUserService.save(sysUser);
+        return sysUser;
+    }
+
+    @PutMapping ("update")
+    public SysUser updateUser(@RequestBody SysUser sysUser){
+        sysUserService.updateById(sysUser);
+        return sysUser;
+    }
+
+    @DeleteMapping({"remove"})
+    public void removeUser(Long id) {
+        this.sysUserService.removeById(id);
+    }
+
 }

@@ -15,12 +15,22 @@
             <result property="sex" column="sex" jdbcType="TINYINT"/>
             <result property="age" column="age" jdbcType="INTEGER"/>
             <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="tenantId" column="tenant_code" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,create_time,create_by,
         update_time,update_by,is_delete,
         name,sex,age,
-        address
+        address,tenant_code
     </sql>
+    <select id="pageQuery" resultType="com.zyao.modal.sys.SysUser">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user where 1=1
+        <if test="filter.name != null and filter.name != ''">
+            and name = #{filter.name}
+        </if>
+
+    </select>
 </mapper>
