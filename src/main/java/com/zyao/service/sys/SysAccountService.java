@@ -1,7 +1,8 @@
-package com.zyao.service;
+package com.zyao.service.sys;
 
 import com.zyao.modal.sys.SysAccount;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.stereotype.Service;
 
 /**
 * @author ayao

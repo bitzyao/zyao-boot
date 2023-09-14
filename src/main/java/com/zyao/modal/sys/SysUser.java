@@ -75,6 +75,12 @@ public class SysUser implements Serializable {
     @TableField(value = "address")
     private String address;
 
+    /**
+     * 多租客
+     */
+    @TableField(value = "tenant_id")
+    private Integer tenantId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -99,7 +105,8 @@ public class SysUser implements Serializable {
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
             && (this.getAge() == null ? other.getAge() == null : this.getAge().equals(other.getAge()))
-            && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()));
+            && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
+            && (this.getTenantId() == null ? other.getTenantId() == null : this.getTenantId().equals(other.getTenantId()));
     }
 
     @Override
@@ -116,6 +123,7 @@ public class SysUser implements Serializable {
         result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
         result = prime * result + ((getAge() == null) ? 0 : getAge().hashCode());
         result = prime * result + ((getAddress() == null) ? 0 : getAddress().hashCode());
+        result = prime * result + ((getTenantId() == null) ? 0 : getTenantId().hashCode());
         return result;
     }
 
@@ -135,6 +143,7 @@ public class SysUser implements Serializable {
         sb.append(", sex=").append(sex);
         sb.append(", age=").append(age);
         sb.append(", address=").append(address);
+        sb.append(", tenantId=").append(tenantId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

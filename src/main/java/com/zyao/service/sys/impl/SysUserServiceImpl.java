@@ -1,9 +1,9 @@
-package com.zyao.service.impl;
+package com.zyao.service.sys.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zyao.mapper.sys.SysUserMapper;
 import com.zyao.modal.sys.SysUser;
-import com.zyao.service.SysUserService;
-import com.zyao.modal.mapper.SysUserMapper;
+import com.zyao.service.sys.SysUserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 * @createDate 2023-09-03 15:23:54
 */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
-    implements SysUserService{
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService{
 
 }
 

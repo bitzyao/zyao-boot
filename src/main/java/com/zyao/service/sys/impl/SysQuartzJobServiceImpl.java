@@ -1,9 +1,9 @@
-package com.zyao.service.impl;
+package com.zyao.service.sys.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zyao.mapper.sys.SysQuartzJobMapper;
 import com.zyao.modal.sys.SysQuartzJob;
-import com.zyao.service.SysQuartzJobService;
-import com.zyao.modal.mapper.SysQuartzJobMapper;
+import com.zyao.service.sys.SysQuartzJobService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 * @createDate 2023-09-03 15:23:48
 */
 @Service
-public class SysQuartzJobServiceImpl extends ServiceImpl<SysQuartzJobMapper, SysQuartzJob>
-    implements SysQuartzJobService{
+public class SysQuartzJobServiceImpl extends ServiceImpl<SysQuartzJobMapper, SysQuartzJob> implements SysQuartzJobService{
 
 }
 

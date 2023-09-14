@@ -1,9 +1,9 @@
-package com.zyao.service.impl;
+package com.zyao.service.sys.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zyao.mapper.sys.SysAccountMapper;
 import com.zyao.modal.sys.SysAccount;
-import com.zyao.service.SysAccountService;
-import com.zyao.modal.mapper.SysAccountMapper;
+import com.zyao.service.sys.SysAccountService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 * @createDate 2023-09-03 15:23:41
 */
 @Service
-public class SysAccountServiceImpl extends ServiceImpl<SysAccountMapper, SysAccount>
-    implements SysAccountService{
+public class SysAccountServiceImpl extends ServiceImpl<SysAccountMapper, SysAccount>  implements SysAccountService{
 
 }
 

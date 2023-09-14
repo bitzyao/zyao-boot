@@ -1,4 +1,4 @@
-package com.zyao.service;
+package com.zyao.service.sys;
 
 import com.zyao.modal.sys.SysEmail;
 import com.baomidou.mybatisplus.extension.service.IService;

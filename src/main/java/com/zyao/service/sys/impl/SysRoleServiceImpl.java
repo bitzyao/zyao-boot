@@ -1,9 +1,9 @@
-package com.zyao.service.impl;
+package com.zyao.service.sys.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zyao.mapper.sys.SysRoleMapper;
 import com.zyao.modal.sys.SysRole;
-import com.zyao.service.SysRoleService;
-import com.zyao.modal.mapper.SysRoleMapper;
+import com.zyao.service.sys.SysRoleService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 * @createDate 2023-09-03 15:23:51
 */
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
-    implements SysRoleService{
+public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService{
 
 }
 
