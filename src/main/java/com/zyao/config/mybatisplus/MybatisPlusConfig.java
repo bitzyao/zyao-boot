@@ -1,63 +1,51 @@
 package com.zyao.config.mybatisplus;
 
-import com.baomidou.mybatisplus.extension.plugins.inner.DynamicTableNameInnerInterceptor;
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import lombok.AllArgsConstructor;
-import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
-import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.LongValue;
 
-//@Configuration
-//@AllArgsConstructor
-//@MapperScan("com.zyao.mapper")
 @Configuration
 @AllArgsConstructor
 @AutoConfigureBefore(MybatisPlusConfig.class)
+@EnableConfigurationProperties(MyTenantConfigProperties.class)
 public class MybatisPlusConfig {
-
     /**
      * 新多租户插件配置,一缓和二缓遵循mybatis的规则,需要设置 MybatisConfiguration#useDeprecatedExecutor = false 避免缓存万一出现问题
      */
+    @Autowired
+    private MyTenantConfigProperties myTenantConfigProperties;
+
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 简化写法 直接创建好实现类
+        if(myTenantConfigProperties.getEnable()){ // 启用多租户插件
+            interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new MyTenantHandler(myTenantConfigProperties))); // 插入多租客插件插件
+        }
 
-
-
-        //动态表名插件 TODO 待完成
-//        DynamicTableNameInnerInterceptor dynamicTableNameInnerInterceptor = new DynamicTableNameInnerInterceptor();
-//        dynamicTableNameInnerInterceptor.setTableNameHandlerMap();
-//
-//        dynamicTableNameInnerInterceptor.setTableNameHandler((sql, tableName) -> {
-//            String tenantId = TenantContextHolder.getTenantId();
-//            //符合的表名拼接租户号
-//            if (tenantProperties.getDynamicTables().stream().anyMatch(
-//                    (t) -> t.equalsIgnoreCase(tableName))) {
-//                return tableName + StringPool.UNDER_LINE + tenantId;
-//            }
-//            return tableName;
-//        });
-//        interceptor.addInnerInterceptor(dynamicTableNameInnerInterceptor);
-
-
-
-        interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new MyTenantHandler())); // 插入插件
         // 如果用了分页插件注意先 add TenantLineInnerInterceptor 再 add PaginationInnerInterceptor
-        // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false
-//        interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false  // 已弃用
+        PaginationInnerInterceptor pageInterceptor = new PaginationInnerInterceptor();
+        // 设置数据库方言类型
+        pageInterceptor.setDbType(DbType.MYSQL);
+        // 下面配置根据需求自行设置
+        // 设置请求的页面大于最大页后操作，true调回到首页，false继续请求。默认false
+        pageInterceptor.setOverflow(false);
+        // 单页分页条数限制，默认无限制
+        pageInterceptor.setMaxLimit(500L);
+        // 插入分页插件
+        interceptor.addInnerInterceptor(pageInterceptor);
         return interceptor;
     }
 
-    //动态表名插件
-
-
+    // 目前已废弃
 //    @Bean
 //    public ConfigurationCustomizer configurationCustomizer() {
 //        return configuration -> configuration.setUseDeprecatedExecutor(false);

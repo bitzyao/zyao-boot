@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.NullValue;
 import net.sf.jsqlparser.expression.StringValue;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,12 +14,13 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@EnableConfigurationProperties(MyTenantConfigProperties.class)
 public class MyTenantHandler implements TenantLineHandler {
 
-    @Autowired
-    private MyTenantConfigProperties myTenantConfigProperties;
+    private final MyTenantConfigProperties myTenantConfigProperties;
 
+    public MyTenantHandler(MyTenantConfigProperties myTenantConfigProperties) {
+        this.myTenantConfigProperties = myTenantConfigProperties;
+    }
     /**
      * 获取租户 ID 值表达式，只支持单个 ID 值
      * @return 租户 ID 值表达式
@@ -59,6 +58,7 @@ public class MyTenantHandler implements TenantLineHandler {
         if (StrUtil.isBlank(tenantId)) {
             return Boolean.TRUE;
         }
-        return myTenantConfigProperties.getIgnoreTables().contains(tableName);
+        // 匹配不区分大小写
+        return myTenantConfigProperties.getIgnoreTables().stream().anyMatch((t) -> tableName.toUpperCase().startsWith(t.toUpperCase()) || tableName.equalsIgnoreCase(t));
     }
 }

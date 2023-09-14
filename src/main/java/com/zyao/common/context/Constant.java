@@ -1,12 +1,10 @@
 package com.zyao.common.context;
 
 public class Constant {
-    public static final String TENANT = "tenant";
-
     /**
      * header 中租户ID
      */
-    public static final String TENANT_ID = "tenantId";
+    public static final String TENANT_ID = "tenant_id";
 
     /**
      * 默认租户ID

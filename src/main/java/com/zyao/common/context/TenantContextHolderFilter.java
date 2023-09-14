@@ -33,13 +33,7 @@ public class TenantContextHolderFilter extends GenericFilterBean {
                 tenantId = Constant.TENANT_ID_DEFAULT;
             }
             log.info("获取到的租户ID为:{}",tenantId);
-            if (Objects.nonNull(tenantId)) {
-                TenantContextHolder.setTenantId(tenantId);
-            } else {
-                if (Objects.isNull(TenantContextHolder.getTenantId())) {
-                    TenantContextHolder.setTenantId(Constant.TENANT_ID_DEFAULT);
-                }
-            }
+            TenantContextHolder.setTenantId(tenantId);
             filterChain.doFilter(request, response);
         } finally {
             TenantContextHolder.clear();
