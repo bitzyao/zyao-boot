@@ -29,7 +29,7 @@ public class TenantContextHolderFilter extends GenericFilterBean {
         try {
             String tenantId = request.getHeader(Constant.TENANT_ID);
             if (Objects.isNull(tenantId)) {
-                tenantId = Constant.TENANT_ID_DEFAULT;
+                tenantId = Constant.TENANT_ID_DEFAULT; // 这种值表示请求没有携带租客信息
             }
             log.info("获取到的租户ID为:{}",tenantId);
             TenantContextHolder.setTenantId(tenantId);

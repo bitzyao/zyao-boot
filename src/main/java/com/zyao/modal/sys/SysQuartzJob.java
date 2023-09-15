@@ -5,54 +5,55 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName sys_quartz_job
  */
 @TableName(value ="sys_quartz_job")
 @Data
 public class SysQuartzJob implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(value = "id")
     private String id;
 
     /**
-     * 
+     *
      */
     @TableField(value = "job_name")
     private String jobName;
 
     /**
-     * 
+     *
      */
     @TableField(value = "job_group")
     private String jobGroup;
 
     /**
-     * 
+     *
      */
     @TableField(value = "description")
     private String description;
 
     /**
-     * 
+     *
      */
     @TableField(value = "job_class_name")
     private String jobClassName;
 
     /**
-     * 
+     *
      */
-    @TableField(value = "job_status")
-    private String jobStatus;
+    @TableField(value = "is_start")
+    private Boolean isStart;
 
     /**
-     * 
+     *
      */
     @TableField(value = "cron_expression")
     private String cronExpression;
@@ -61,7 +62,7 @@ public class SysQuartzJob implements Serializable {
      * 创建时间
      */
     @TableField(value = "create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 创建人
@@ -73,7 +74,7 @@ public class SysQuartzJob implements Serializable {
      * 更新时间
      */
     @TableField(value = "update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     /**
      * 更新人
@@ -85,7 +86,7 @@ public class SysQuartzJob implements Serializable {
      * 是否删除
      */
     @TableField(value = "is_delete")
-    private Integer isDelete;
+    private Boolean isDelete;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -107,7 +108,7 @@ public class SysQuartzJob implements Serializable {
             && (this.getJobGroup() == null ? other.getJobGroup() == null : this.getJobGroup().equals(other.getJobGroup()))
             && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
             && (this.getJobClassName() == null ? other.getJobClassName() == null : this.getJobClassName().equals(other.getJobClassName()))
-            && (this.getJobStatus() == null ? other.getJobStatus() == null : this.getJobStatus().equals(other.getJobStatus()))
+            && (this.getIsStart() == null ? other.getIsStart() == null : this.getIsStart().equals(other.getIsStart()))
             && (this.getCronExpression() == null ? other.getCronExpression() == null : this.getCronExpression().equals(other.getCronExpression()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getCreateBy() == null ? other.getCreateBy() == null : this.getCreateBy().equals(other.getCreateBy()))
@@ -125,7 +126,7 @@ public class SysQuartzJob implements Serializable {
         result = prime * result + ((getJobGroup() == null) ? 0 : getJobGroup().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         result = prime * result + ((getJobClassName() == null) ? 0 : getJobClassName().hashCode());
-        result = prime * result + ((getJobStatus() == null) ? 0 : getJobStatus().hashCode());
+        result = prime * result + ((getIsStart() == null) ? 0 : getIsStart().hashCode());
         result = prime * result + ((getCronExpression() == null) ? 0 : getCronExpression().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getCreateBy() == null) ? 0 : getCreateBy().hashCode());
@@ -146,7 +147,7 @@ public class SysQuartzJob implements Serializable {
         sb.append(", jobGroup=").append(jobGroup);
         sb.append(", description=").append(description);
         sb.append(", jobClassName=").append(jobClassName);
-        sb.append(", jobStatus=").append(jobStatus);
+        sb.append(", IsStart=").append(isStart);
         sb.append(", cronExpression=").append(cronExpression);
         sb.append(", createTime=").append(createTime);
         sb.append(", createBy=").append(createBy);

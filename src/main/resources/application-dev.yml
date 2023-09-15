@@ -1,5 +1,5 @@
 server:
-  port: 6666
+  port: 8080
   servlet:
     context-path: /
 
@@ -84,7 +84,7 @@ tenant:
   enable: true
   column: tenant_code
   ignoreTables:  # 支持前缀匹配和全名匹配,不区分大小写
-#    - SYS_USER
+    - sys_quartz_job
 #    - sys_account
   ignoreSqls:   # 目前没有很好的设计方案 还未开发
 
@@ -94,5 +94,8 @@ logging:
     com.hongyin.mapper: debug
     org.hibernate.SQL: OFF
     org.hibernate.type.descriptor.sql.BasicBinder: info
-swagger:
-  enable: true
+#springfox:
+#  documentation:
+#    swagger-ui:
+#      enabled: true
+#      base-url: /
