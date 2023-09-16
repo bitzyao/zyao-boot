@@ -6,8 +6,6 @@ import com.zyao.common.aspect.annotation.MyCacheable;
 import com.zyao.controller.BaseController;
 import com.zyao.modal.sys.SysUser;
 import com.zyao.service.sys.SysUserService;
-//import io.swagger.annotations.Api;
-//import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

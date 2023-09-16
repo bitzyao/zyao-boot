@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+//import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -16,11 +17,13 @@ import lombok.Data;
  */
 @TableName(value ="sys_user")
 @Data
+//@Schema(title = "用户模型VO", description = "响应视图用户模型VO")
 public class SysUser implements Serializable {
     /**
      * 主键
      */
     @TableId(value = "id")
+//    @Schema(name = "id", description = "ig属性", format = "int64", example = "1")
     private Integer id;
 
     /**
@@ -57,12 +60,14 @@ public class SysUser implements Serializable {
      * 姓名
      */
     @TableField(value = "name")
+//    @Schema(name = "用户姓名", description = "用户姓名属性", example = "zhouyao")
     private String name;
 
     /**
      * 性别(1:男，0：女)
      */
     @TableField(value = "sex")
+//    @Schema(name = "性别", description = "性别属性(1:男，0:女)", format = "bit", example = "1")
     private Integer sex;
 
     /**

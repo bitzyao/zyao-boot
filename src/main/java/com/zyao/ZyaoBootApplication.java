@@ -21,6 +21,8 @@ public class ZyaoBootApplication {
         String ip = InetAddress.getLocalHost().getHostAddress();
         System.out.println("启动完成，系统访问地址：http://localhost:" + port);
         System.out.println("启动完成，系统访问局域网地址：http://"+ip+":"+port);
-        System.out.println("Swagger访问地址：http://"+ip+":"+port+"/swagger-ui/index.html");
+        String springdocPath = environment.getProperty("springdoc.swagger-ui.path");
+        String applicationName = environment.getProperty("spring.application.name");
+        System.out.println("openAPI访问地址：http://"+ip+":"+port+springdocPath);
     }
 }

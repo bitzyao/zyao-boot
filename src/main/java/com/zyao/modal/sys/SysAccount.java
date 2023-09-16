@@ -70,6 +70,12 @@ public class SysAccount implements Serializable {
     @TableField(value = "user_id")
     private Integer userId;
 
+    /**
+     * 多租客
+     */
+    @TableField(value = "tenant_code")
+    private String tenantCode;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

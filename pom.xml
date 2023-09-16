@@ -104,17 +104,14 @@
             <version>2.14.2</version>
         </dependency>
 
-        <!--接口文档依赖-->
-<!--        <dependency>-->
-<!--            <groupId>io.springfox</groupId>-->
-<!--            <artifactId>springfox-boot-starter</artifactId>-->
-<!--            <version>3.0.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.github.xiaoymin</groupId>-->
-<!--            <artifactId>swagger-bootstrap-ui</artifactId>-->
-<!--            <version>1.9.6</version>-->
-<!--        </dependency>-->
+        <!-- 导入SpringBoot集成Open API 3.0（Swagger3.0）的坐标 -->
+        <!-- 这个坐标它提供了一组注解和工具来集成Swagger UI和OpenAPI规范等-->
+        <!-- 更多资料内容: https://www.cnblogs.com/antLaddie/p/17418078.html -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
 
     </dependencies>
 

@@ -94,6 +94,12 @@ public class SysEmail implements Serializable {
     @TableField(value = "is_delete")
     private Boolean isDelete = Boolean.FALSE;
 
+    /**
+     * 多租客
+     */
+    @TableField(value = "tenant_code")
+    private String tenantCode;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

@@ -64,6 +64,12 @@ public class SysUserRole implements Serializable {
     @TableField(value = "role_id")
     private Integer roleId;
 
+    /**
+     * 多租客
+     */
+    @TableField(value = "tenant_code")
+    private String tenantCode;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
