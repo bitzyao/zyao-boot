@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-09-03 15:23:45
 */
 public interface SysEmailService extends IService<SysEmail> {
-
+    void sendEmail(SysEmail email);
 }

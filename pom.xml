@@ -98,28 +98,24 @@
             <artifactId>fastjson</artifactId>
             <version>2.0.32</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-context</artifactId>-->
-<!--            <version>3.1.3</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>transmittable-thread-local</artifactId>
             <version>2.14.2</version>
         </dependency>
 
+        <!-- 导入SpringBoot集成Open API 3.0（Swagger3.0）的坐标 -->
+        <!-- 这个坐标它提供了一组注解和工具来集成Swagger UI和OpenAPI规范等-->
+        <!-- 更多资料内容: https://www.cnblogs.com/antLaddie/p/17418078.html -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
 
     </dependencies>
 
     <build>
-<!--        <plugins>-->
-<!--            -->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
         <plugins>
             <!--测试时删除-->
             <plugin>
@@ -131,19 +127,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
-        <!--配置maven打包的时候吧mybatis的Mapper.xml也打包进去 目前看来不用加也是有的-->
-        <!--<resources>
-            <resource>
-                <directory>src/main/resources/</directory>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>-->
     </build>
     <repositories>
         <repository>

@@ -1,16 +1,13 @@
 package com.zyao.controller;
 
-import cn.hutool.json.JSONObject;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zyao.common.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
 
 // @CrossOrigin 允许跨域请求
 @CrossOrigin
@@ -40,7 +37,7 @@ public class BaseController implements Annotation {
     }
 
     protected <T> ResponseEntity<?> getResponse(Page<T> data) {
-        PageVo pageVo = new PageVo((int) data.getTotalElements(),data.getContent());
+        PageVo pageVo = new PageVo((int) data.getTotal(),data.getRecords());
         return ResponseEntity.ok(pageVo);
     }
 

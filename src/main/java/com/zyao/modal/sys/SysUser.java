@@ -6,26 +6,31 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
+
+//import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName sys_user
  */
 @TableName(value ="sys_user")
 @Data
+//@Schema(title = "用户模型VO", description = "响应视图用户模型VO")
 public class SysUser implements Serializable {
     /**
      * 主键
      */
     @TableId(value = "id")
+//    @Schema(name = "id", description = "ig属性", format = "int64", example = "1")
     private Integer id;
 
     /**
      * 创建时间
      */
     @TableField(value = "create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 创建人
@@ -37,7 +42,7 @@ public class SysUser implements Serializable {
      * 更新时间
      */
     @TableField(value = "update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     /**
      * 更新人
@@ -49,18 +54,20 @@ public class SysUser implements Serializable {
      * 是否删除
      */
     @TableField(value = "is_delete")
-    private Integer isDelete;
+    private Boolean isDelete = Boolean.FALSE;
 
     /**
      * 姓名
      */
     @TableField(value = "name")
+//    @Schema(name = "用户姓名", description = "用户姓名属性", example = "zhouyao")
     private String name;
 
     /**
      * 性别(1:男，0：女)
      */
     @TableField(value = "sex")
+//    @Schema(name = "性别", description = "性别属性(1:男，0:女)", format = "bit", example = "1")
     private Integer sex;
 
     /**
@@ -78,8 +85,8 @@ public class SysUser implements Serializable {
     /**
      * 多租客
      */
-    @TableField(value = "tenant_id")
-    private Integer tenantId;
+    @TableField(value = "tenant_code")
+    private String tenantCode;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -106,7 +113,7 @@ public class SysUser implements Serializable {
             && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
             && (this.getAge() == null ? other.getAge() == null : this.getAge().equals(other.getAge()))
             && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
-            && (this.getTenantId() == null ? other.getTenantId() == null : this.getTenantId().equals(other.getTenantId()));
+            && (this.getTenantCode() == null ? other.getTenantCode() == null : this.getTenantCode().equals(other.getTenantCode()));
     }
 
     @Override
@@ -123,7 +130,7 @@ public class SysUser implements Serializable {
         result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
         result = prime * result + ((getAge() == null) ? 0 : getAge().hashCode());
         result = prime * result + ((getAddress() == null) ? 0 : getAddress().hashCode());
-        result = prime * result + ((getTenantId() == null) ? 0 : getTenantId().hashCode());
+        result = prime * result + ((getTenantCode() == null) ? 0 : getTenantCode().hashCode());
         return result;
     }
 
@@ -143,7 +150,7 @@ public class SysUser implements Serializable {
         sb.append(", sex=").append(sex);
         sb.append(", age=").append(age);
         sb.append(", address=").append(address);
-        sb.append(", tenantId=").append(tenantId);
+        sb.append(", TenantCode=").append(tenantCode);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

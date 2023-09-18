@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/Account")
-public class AccountController extends BaseController {
+public class SysAccountController extends BaseController {
 
     @Autowired
     private SysAccountService sysAccountService;

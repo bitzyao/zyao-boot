@@ -5,11 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName sys_email
  */
 @TableName(value ="sys_email")
@@ -31,7 +32,7 @@ public class SysEmail implements Serializable {
      * 创建时间
      */
     @TableField(value = "create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 更新时间
@@ -43,7 +44,7 @@ public class SysEmail implements Serializable {
      * 更新人
      */
     @TableField(value = "update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     /**
      * 邮件主题
@@ -79,7 +80,7 @@ public class SysEmail implements Serializable {
      * 是否Html发送
      */
     @TableField(value = "is_html")
-    private Integer isHtml;
+    private Boolean isHtml;
 
     /**
      * 异常信息
@@ -91,7 +92,13 @@ public class SysEmail implements Serializable {
      * 是否删除
      */
     @TableField(value = "is_delete")
-    private Integer isDelete;
+    private Boolean isDelete = Boolean.FALSE;
+
+    /**
+     * 多租客
+     */
+    @TableField(value = "tenant_code")
+    private String tenantCode;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

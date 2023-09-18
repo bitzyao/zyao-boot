@@ -3,6 +3,7 @@ package com.zyao.config.mybatisplus;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
 
+@Slf4j
 @Configuration
 @AllArgsConstructor
 @AutoConfigureBefore(MybatisPlusConfig.class)
@@ -27,6 +29,7 @@ public class MybatisPlusConfig {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         // 简化写法 直接创建好实现类
         if(myTenantConfigProperties.getEnable()){ // 启用多租户插件
+            log.info("已开启多租客模式");
             interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new MyTenantHandler(myTenantConfigProperties))); // 插入多租客插件插件
         }
 

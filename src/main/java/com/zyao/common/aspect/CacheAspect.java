@@ -1,7 +1,7 @@
 package com.zyao.common.aspect;
 
 import com.zyao.common.aspect.annotation.MyCacheable;
-import com.zyao.job.utils.RedisUtil;
+import com.zyao.common.utils.RedisUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

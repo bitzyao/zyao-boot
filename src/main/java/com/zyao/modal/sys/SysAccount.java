@@ -5,11 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 import lombok.Data;
 
 /**
- * 
+ *
  * @TableName sys_account
  */
 @TableName(value ="sys_account")
@@ -25,7 +26,7 @@ public class SysAccount implements Serializable {
      * 创建时间
      */
     @TableField(value = "create_time")
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 创建人
@@ -37,7 +38,7 @@ public class SysAccount implements Serializable {
      * 更新时间
      */
     @TableField(value = "update_time")
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     /**
      * 更新人
@@ -49,7 +50,7 @@ public class SysAccount implements Serializable {
      * 是否删除
      */
     @TableField(value = "is_delete")
-    private Integer isDelete;
+    private Boolean isDelete = Boolean.FALSE;
 
     /**
      * 账号
@@ -68,6 +69,12 @@ public class SysAccount implements Serializable {
      */
     @TableField(value = "user_id")
     private Integer userId;
+
+    /**
+     * 多租客
+     */
+    @TableField(value = "tenant_code")
+    private String tenantCode;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
