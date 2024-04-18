@@ -60,7 +60,7 @@ public class SpringdocOpenapiConfiguration implements WebMvcConfigurer {
 //                                .name("Authorization3") //标题
 //                                .description("token令牌3") //描述
 //                                .scheme("basic")) // 在RFC7235中定义的Authorization标头中使用的HTTP Authorization方案的名称
-                .addParameters("myHeader1", new Parameter().in("header").schema(new StringSchema()).name("myHeader1"))
+//                .addParameters("myHeader1", new Parameter().in("header").schema(new StringSchema()).name("myHeader1"))
                 .addParameters("tenantCode", new HeaderParameter().required(true).name("tenant_code").description("多租户标识").schema(new StringSchema()).required(false))
         ;
 
@@ -98,7 +98,7 @@ public class SpringdocOpenapiConfiguration implements WebMvcConfigurer {
         return openApi -> openApi.getPaths().values().stream().flatMap(pathItem -> pathItem.readOperations().stream())
                 .forEach(operation -> {
                     operation.addParametersItem(new HeaderParameter().$ref("#/components/parameters/tenantCode")); // 添加到接口文档中配置
-                    operation.addParametersItem(new HeaderParameter().$ref("#/components/parameters/myHeader1")); // 添加到接口文档中配置
+//                    operation.addParametersItem(new HeaderParameter().$ref("#/components/parameters/myHeader1")); // 添加到接口文档中配置
                 });
     }
 

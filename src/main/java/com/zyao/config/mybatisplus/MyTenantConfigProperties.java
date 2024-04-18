@@ -3,7 +3,6 @@ package com.zyao.config.mybatisplus;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "tenant") // 音色到配置文件的属性
+@ConfigurationProperties(prefix = "tenant") // 映射到配置文件的属性
 public class MyTenantConfigProperties {
     /**
      * 多租户字段名称(根据实际项目修改)

@@ -15,7 +15,7 @@
             <result property="sex" column="sex" jdbcType="TINYINT"/>
             <result property="age" column="age" jdbcType="INTEGER"/>
             <result property="address" column="address" jdbcType="VARCHAR"/>
-            <result property="tenantId" column="tenant_code" jdbcType="VARCHAR"/>
+            <result property="tenantCode" column="tenant_code" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">

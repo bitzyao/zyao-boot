@@ -34,7 +34,6 @@ public class MyTenantHandler implements TenantLineHandler {
         }
         return new StringValue(tenantId);
     }
-
     /**
      * 获取租户字段名
      * @return 租户字段名
@@ -43,7 +42,6 @@ public class MyTenantHandler implements TenantLineHandler {
     public String getTenantIdColumn() {
         return myTenantConfigProperties.getColumn();
     }
-
     /**
      * 根据表名判断是否忽略拼接多租户条件
      * <p>

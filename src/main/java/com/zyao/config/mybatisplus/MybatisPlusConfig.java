@@ -23,7 +23,6 @@ public class MybatisPlusConfig {
      */
     @Autowired
     private MyTenantConfigProperties myTenantConfigProperties;
-
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
@@ -32,7 +31,6 @@ public class MybatisPlusConfig {
             log.info("已开启多租客模式");
             interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new MyTenantHandler(myTenantConfigProperties))); // 插入多租客插件插件
         }
-
         // 如果用了分页插件注意先 add TenantLineInnerInterceptor 再 add PaginationInnerInterceptor
         // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false  // 已弃用
         PaginationInnerInterceptor pageInterceptor = new PaginationInnerInterceptor();
@@ -47,10 +45,4 @@ public class MybatisPlusConfig {
         interceptor.addInnerInterceptor(pageInterceptor);
         return interceptor;
     }
-
-    // 目前已废弃
-//    @Bean
-//    public ConfigurationCustomizer configurationCustomizer() {
-//        return configuration -> configuration.setUseDeprecatedExecutor(false);
-//    }
 }

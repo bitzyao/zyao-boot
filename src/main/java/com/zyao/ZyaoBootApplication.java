@@ -23,6 +23,7 @@ public class ZyaoBootApplication {
         System.out.println("启动完成，系统访问局域网地址：http://"+ip+":"+port);
         String springdocPath = environment.getProperty("springdoc.swagger-ui.path");
         String applicationName = environment.getProperty("spring.application.name");
-        System.out.println("openAPI访问地址：http://"+ip+":"+port+springdocPath);
+        String contextPath = environment.getProperty("server.servlet.context-path");
+        System.out.println("openAPI访问地址：http://"+ip+":"+port+contextPath+springdocPath);
     }
 }
