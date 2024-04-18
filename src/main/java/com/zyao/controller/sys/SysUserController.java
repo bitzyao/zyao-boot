@@ -22,7 +22,7 @@ public class SysUserController extends BaseController {
 
 //    @ApiOperation("通过id获取用户信息")
     @GetMapping("/get")
-    @MyCacheable(folder = "sysUser",expireSeconds = 60,isArgAsKey = true)
+//    @MyCacheable(folder = "sysUser",expireSeconds = 60,isArgAsKey = true)
     public SysUser getSysUserById(Long id){
         return sysUserService.getById(id);
     }
